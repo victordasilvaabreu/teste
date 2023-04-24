@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>tamagotchi</title>
+<link rel="stylesheet" type="text/css" href="estilo.css">
+</head>
+<style type="text/css">
+	body{
+		overflow: hidden;
+	}
+.pet{
+	border-radius: 10px;
+	width: 80px;
+	height: 80px;
+}
+.bloco{
+
+   width: 400%;
+}
+.botao{
+	padding: 6px 50px;
+	background: #777;
+	color: #f2f2f2;
+	border-radius: 4px;
+   cursor: pointer;
+   width: 100%;
+}
+.botao:hover{
+	background: #222;
+}
+.botao:active{
+	background: #777;
+}
+.barra{
+	width: 100px;
+	background: #99cc00;
+	margin: 5px 10px;
+	border-radius: 4px;
+	padding: 3px 3px;
+
+}
+.lado{
+	float: left;
+	margin: 10px 25px;
+	width: 120px;
+
+}
+#blocoBotao{
+	padding: 115px 0px;
+}
+#blocoImagem{
+	padding: 0px 0px;
+	position: relative;
+	left: 200px;
+	top: 100px;
+}
+#mensagem{
+	color: red;
+}
+
+
+
+</style>
+<script src="script.js" >
+	var fome=100;
+	var higiene=100;
+	var sono= 100;
+	var diversao= 100;
+	var social= 100;
+
+function loop(time = 2){
+	var total = fome + higiene + sono + diversao + social;
+
+	if(fome <=0|| higiene<= 0 || sono <= 0 || diversao <= 0 || social <= 0){
+		document.getElementById("pet").src="img/preto.jpg"
+		document.getElementById("pet").innerHTML = "voce deixou seu pet morrer, atualize a pagina e morrer vc tbm";
+		}else if (total > 400){
+			document.getElementById("pet").src="imagem/azul.jpg"
+			}else if (total > 300){
+				document.getElementById("pet").src="imagem/verde.jpg"
+				}else if (total > 200){
+					document.getElementById("pet").src="immagem/cinza.jpg"
+				}else if (total > 100){
+					document.getElementById("pet").src="imagem/amarelo.jpg"
+				}else if (total > 50){
+					document.getElementById("pet").src="imagem/vermelho.jpg"
+}
+
+fome = fome - parseInt(time);
+higiene = higiene - parseInt(time);
+sono = sono - parseInt(time);
+diversao = diversao - parseInt(time);
+social = social - parseInt(time);
+
+document.getElementById("fome").innerHTML= fome+"%"
+document.getElementById("higiene").innerHTML= higiene +"%"
+document.getElementById("sono").innerHTML= sono +"%"
+document.getElementById("diversao").innerHTML= diversao +"%"
+document.getElementById("social").innerHTML= social +"%"
+}
+function Start(){
+	var temporizador = setInterval(loop, 1000);
+}
+function Comer(){
+	fome = 100;
+	document.getElementById("fome").innerHTML = fome + "%";
+	document.getElementById("fome").style.widh = fome + "px";
+}
+function banho(){
+	higiene = 100;
+	document.getElementById("higiene").innerHTML = higiene + "%";
+	document.getElementById("higiene").style.widh = higiene + "px";
+}
+function dormir(){
+	sono = 100;
+	document.getElementById("sono").innerHTML = sono + "%";
+	document.getElementById("sono").style.widh = sono  + "px";
+}
+function brincar(){
+    diversao = 100;
+	document.getElementById("diversao").innerHTML = diversao + "%";
+	document.getElementById("diversao").style.widh = diversao + "px";
+}
+function conversa(){
+	social = 100;
+	document.getElementById("social").innerHTML = social + "%";
+	document.getElementById("social").style.widh = social + "px";
+}
+
+
+
+</script>
+<body>
+
+<div id="bloco">
+	<div id="blocoimagem">
+		<img src="img/azul.jpg" class="pet" alt="imagem">
+	</div>
+	<div class="lado"><h2><strong>status</strong></h2></div>
+	fome:<div id="fome" class="barra">100%</div>
+	higiene:<div id="higiene" class="barra">100%</div>
+	sono <div id="sono" class="barra">100%</div>	
+    diversão:<div id="diversão" class="barra">100%</div>
+    social:<div id="social" class="barra">100%</div>
+    <div id="blocobotao">
+    	<p><span class="botao" onclick="comer()">comer</p>
+    	<p><span class="botao" onclick="comer()">banho</p>
+    	<p><span class="botao" onclick="comer()">dormir</p>
+    	<p><span class="botao" onclick="comer()">brincar</p>
+    	<p><span class="botao" onclick="comer()">conversar</p>
+    </div>
+      <h3><div id="mensagem"></div></h3>  
+</div>
+
+
+
+
+</body>
+</html>
